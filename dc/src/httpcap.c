@@ -1096,7 +1096,6 @@ int main(int argc, char **argv)
 	int status;
 	u_char *pktData;
 	do{
-
 	    status = pcap_next_ex(handle, &pktHeader, &pktData);
 	    if(status == 1)
 	    {
