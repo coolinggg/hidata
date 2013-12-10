@@ -970,7 +970,7 @@ got_packet(const struct pcap_pkthdr *header, const u_char *packet)
                 http.len = size_payload;
 
 		http_parse_request(&http);
-		//print_payload(payload, size_payload);
+		print_payload(payload, size_payload);
 	    }
 	}
 
@@ -1085,7 +1085,7 @@ int main(int argc, char **argv)
         //     printf ("error in zmq_socket: %s\n", zmq_strerror (errno));
         //     return 1;
         // }
-	handle = pcap_open_live(pCardName,65535,1,1000,errbuf);
+	handle = pcap_open_live(pCardName,65535,1,0,errbuf);
   //       handle = pcap_open_offline(filename  , errbuf);
         if (handle == NULL) {
 		fprintf(stderr, "Couldn't open device %s: %s\n", dev, errbuf);
@@ -1101,7 +1101,7 @@ int main(int argc, char **argv)
 	    if(status == 1)
 	    {
 	    	packet_count++;
-	    	printf("%d:%s\n", packet_count, "get a packet");
+	    	//printf("%d:%s\n", packet_count, "get a packet");
 	    	fflush(stdout);
                 got_packet(pktHeader,pktData);
 	    }
