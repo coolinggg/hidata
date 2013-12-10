@@ -1095,11 +1095,13 @@ int main(int argc, char **argv)
         struct pcap_pkthdr *pktHeader;
 	int status;
 	u_char *pktData;
+	int packet_count = 0;
 	do{
 	    status = pcap_next_ex(handle, &pktHeader, &pktData);
 	    if(status == 1)
 	    {
-	    	printf("%s\n", "get a packet");
+	    	packet_count++;
+	    	printf("%d:%s\n", packet_count, "get a packet");
 	    	fflush(stdout);
                 got_packet(pktHeader,pktData);
 	    }
