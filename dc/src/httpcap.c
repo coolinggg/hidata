@@ -5,8 +5,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <time.h>
-#include "MqDCClient.h"
-#include "suffixfilter.h"
+// #include "MqDCClient.h"
+// #include "suffixfilter.h"
 /* default snap length (maximum bytes per packet to capture) */
 #define SNAP_LEN 65535//1518
 
@@ -21,7 +21,7 @@
 #define LF (u_char) 10
 
 
-static ZmqDCClient *dcClient;
+// static ZmqDCClient *dcClient;
 
 FILE * ffp;
 
@@ -1066,11 +1066,11 @@ int main(int argc, char **argv)
 	}
 
 
-        dcClient = initZmq("192.168.1.153", "5000");
-        if (!dcClient) {
-            printf ("error in zmq_socket: %s\n", zmq_strerror (errno));
-            return 1;
-        }
+        // dcClient = initZmq("192.168.1.153", "5000");
+        // if (!dcClient) {
+        //     printf ("error in zmq_socket: %s\n", zmq_strerror (errno));
+        //     return 1;
+        // }
 
         handle = pcap_open_offline(filename  , errbuf);
         if (handle == NULL) {
