@@ -513,10 +513,10 @@ http_parse_request(struct http_request_kinfo *httprequest)
 		{
 		    if(*t == '.')
 		    {
-                        if(SuffixSearch(t + 1) != -1)
-			{
-		            return 1;
-		        }
+   //                      if(SuffixSearch(t + 1) != -1)
+			// {
+		 //            return 1;
+		 //        }
 			break;
 		    }    
 		}
@@ -530,10 +530,10 @@ http_parse_request(struct http_request_kinfo *httprequest)
 		{
 		    if(*t == '.')
 		    {
-                        if(SuffixSearch(t + 1) != -1)
-			{
-		            return 1;
-		        }
+   //                      if(SuffixSearch(t + 1) != -1)
+			// {
+		 //            return 1;
+		 //        }
 			break;
 		    }    
 		}
@@ -992,7 +992,7 @@ int main(int argc, char **argv)
 	int num_packets = -1;			/* number of packets to capture */
         ffp = fopen("cap1.txt","a");
 
-	SuffixHashinit();
+	// SuffixHashinit();
 
 //	/* check for capture device name on command-line */
 //	if (argc == 2) {
