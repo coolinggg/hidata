@@ -1052,31 +1052,45 @@ int main(int argc, char **argv)
 //		exit(EXIT_FAILURE);
 //	}
 
-        char * filename;
+	if (argc != 3) {
+		
+	}
+
+    char * filename;
+    char * pCardName;
 	
-	if (argc == 2) {
-		filename = argv[1];
+	if(strcmp(argv[1], "list")==0)
+	{
+		pcap_if_t* alldevs;
+       	pcap_if_t* d;
+       	pcap_findalldevs(&alldevs,errbuf);       // 获得网络设备指针
+       	for(d=alldevs;d;d=d->next)               // 枚举网卡然后添加到ComboBox中
+       	{
+		 	printf("%s\n", d->name);      // d->name就是我们需要的网卡名字字符串，按照你// 自己的需要保存到你的相应变量中去
+       	}
+		pcap_freealldevs(alldevs);               // 释放alldev资源
+		exit(0);
 	}
-	else if (argc > 2) {
+	else if((strcmp(argv[1], "cap")==0) && (argc==3))
+	{
+		pCardName = argv[2];
+	}
+	else
+	{
 		fprintf(stderr, "error: unrecognized command-line options\n\n");
-		exit(EXIT_FAILURE);
+		exit(-1);
 	}
-	else {
-	    filename = "/home/hidata/chenjinzhao.cap";
-	}
-
-
         // dcClient = initZmq("192.168.1.153", "5000");
         // if (!dcClient) {
         //     printf ("error in zmq_socket: %s\n", zmq_strerror (errno));
         //     return 1;
         // }
-
-        handle = pcap_open_offline(filename  , errbuf);
+	handle = pcap_open_live(pCardName,65535,1,1000,errbuf);
+  //       handle = pcap_open_offline(filename  , errbuf);
         if (handle == NULL) {
 		fprintf(stderr, "Couldn't open device %s: %s\n", dev, errbuf);
 		exit(EXIT_FAILURE);
-	}
+		}
 	/* now we can set our callback function */
         struct pcap_pkthdr *pktHeader;
 	int status;
