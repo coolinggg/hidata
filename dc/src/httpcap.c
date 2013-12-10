@@ -1100,7 +1100,8 @@ int main(int argc, char **argv)
 	    status = pcap_next_ex(handle, &pktHeader, &pktData);
 	    if(status == 1)
 	    {
-	    	printf("%s\n", "get a packet\n");
+	    	printf("%s\n", "get a packet");
+	    	fflush(stdout);
                 got_packet(pktHeader,pktData);
 	    }
 	    if(status == 0)
